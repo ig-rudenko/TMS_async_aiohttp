@@ -3,9 +3,12 @@ from jinja2 import FileSystemLoader
 import aiohttp_jinja2
 
 from app.urls import routes
+from app.middlewares import redis_session_middleware
 
 
-app = web.Application()
+app = web.Application(
+    middlewares=[redis_session_middleware],
+)
 
 
 aiohttp_jinja2.setup(
@@ -17,6 +20,5 @@ aiohttp_jinja2.setup(
 )
 
 app.router.add_routes(routes)
-
 
 web.run_app(app, host='0.0.0.0', port=8080)

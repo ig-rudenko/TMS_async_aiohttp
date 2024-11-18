@@ -6,6 +6,10 @@ python = "^3.12"
 requests = "^2.32.3"
 aiohttp-jinja2 = "^1.6"
 aiohttp = "^3.11.0"
+sqlalchemy = "^2.0.36"
+aiosqlite = "^0.20.0"
+aiohttp-session = "^2.12.1"
+redis = "^5.2.0"
 
 
 [build-system]
