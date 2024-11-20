@@ -54,6 +54,6 @@ def run_sync():
     print(f"Синхронное выполнение заняло {e - s} секунд")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # run_sync()
     asyncio.run(run_async())

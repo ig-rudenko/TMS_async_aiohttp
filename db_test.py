@@ -15,25 +15,26 @@ async def create_user(session: AsyncSession, email: str, username: str, password
     return user
 
 
-engine = create_async_engine(url="sqlite+aiosqlite:///test.db")
+test_engine = create_async_engine(url="sqlite+aiosqlite:///test.db")
 
-session_maker = async_sessionmaker(bind=engine)
+test_session_maker = async_sessionmaker(bind=test_engine)
 
 
 # session: AsyncSession = session_maker()
 
+
 async def create_tables() -> None:
-    async with engine.begin() as conn:
+    async with test_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 
 async def main():
     await create_tables()
 
-    async with session_maker() as session:
+    async with test_session_maker() as session:
         user = await create_user(session=session, email="test@test.com", username="test", password="test")
         print("Создан пользователь:", user.id, user.email, user.username, user.password)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
